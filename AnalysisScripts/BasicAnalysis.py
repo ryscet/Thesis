@@ -10,17 +10,19 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
+from datetime import datetime
 
 
 try:
     EyeData
 except NameError:
+    startTime = datetime.now()
     print ("Results not loaded. Loading results")
     allResults = op.combineSubjects()
     Events = allResults[0]
     EyeData = allResults[1]
-
-
+    print( datetime.now() - startTime)
+    correct_subjects = [i for i in range (1, len(Events) + 1)]
 
 def plotEye(eye):
     

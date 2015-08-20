@@ -25,7 +25,8 @@ def combineSubjects():
 
 def openLogs(subjectID, originalTime):
     pd.options.mode.chained_assignment = None
-    _path = "/Users/ryszardcetnarski/Desktop/MasterForSync/Organized_Results/Events/Subject_" + str(subjectID) + "/events.csv"
+    #_path = "/Users/ryszardcetnarski/Desktop/MasterForSync/Organized_Results/Events/Subject_" + str(subjectID) + "/events.csv"
+    _path = "/Users/user/Desktop/Thesis/Organized_Results/Events/Subject_" + str(subjectID) + "/events.csv"
        
     
     file_time = originalTime
@@ -129,7 +130,9 @@ def openLogs(subjectID, originalTime):
 
 def openEye(subjectID):
     
-    _path = "/Users/ryszardcetnarski/Desktop/MasterForSync/Organized_Results/Eye/Subject_" + str(subjectID) + "/eye.csv"
+    #_path = "/Users/ryszardcetnarski/Desktop/MasterForSync/Organized_Results/Eye/Subject_" + str(subjectID) + "/eye.csv"
+    _path = "/Users/user/Desktop/Thesis/Organized_Results/Eye/Subject_" + str(subjectID) + "/eye.csv"
+    
     f = open(_path)
     lines = f.readlines()
     f.close()
