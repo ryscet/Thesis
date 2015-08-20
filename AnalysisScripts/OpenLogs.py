@@ -12,11 +12,11 @@ import time
 import os
 import subprocess
 
-correct_subjects = [1,2,4,5,6,7,8,9,10]
+correct_subjects = [1,2,3,4,5,6,7,8,9,10]
 def combineSubjects():
     allEvents = []
     allEye = []
-    for i in correct_subjects:
+    for i in range(1, 17):
         allEye.append(openEye(i))
         allEvents.append(openLogs(i, allEye[-1].index[0]))
         print(i)
@@ -25,8 +25,8 @@ def combineSubjects():
 
 def openLogs(subjectID, originalTime):
     pd.options.mode.chained_assignment = None
-    _path = "/Users/ryszardcetnarski/Desktop/Master_Thesis_Experiment/Results/Events/Subject_" + str(subjectID) + "/events.csv"
-        
+    _path = "/Users/ryszardcetnarski/Desktop/MasterForSync/Organized_Results/Events/Subject_" + str(subjectID) + "/events.csv"
+       
     
     file_time = originalTime
     
@@ -39,11 +39,16 @@ def openLogs(subjectID, originalTime):
     startIdx = []
     endIdx = []
     for idx, line in enumerate(lines):
-        if 'StartingTrial' in line: 
-            startIdx.append(idx -1)
-        if 'Question' in line:
-            endIdx.append(idx+2)
-    
+#Only look for 72 trials (that is the max amount of trials), the 73rd begun to save when experiment was ending thus eslting in error ('StartingTrial' without 'Question')
+        if len(startIdx) < 71: 
+            if 'StartingTrial' in line: 
+                startIdx.append(idx -1)
+        if len(endIdx) < 71:
+            if 'Question' in line:
+                endIdx.append(idx+2)
+                
+    print(len(startIdx))
+    print(len(endIdx))
     limits = np.vstack((startIdx, endIdx)).T
     doneLogs = pd.DataFrame(columns = ['type','possible','stim','startInference','endInference', 'startNoference','endNoference','sortAnswer'])
 
@@ -124,7 +129,7 @@ def openLogs(subjectID, originalTime):
 
 def openEye(subjectID):
     
-    _path = "/Users/ryszardcetnarski/Desktop/Master_Thesis_Experiment/Results/Eye/Subject_" + str(subjectID) + "/eye.csv"
+    _path = "/Users/ryszardcetnarski/Desktop/MasterForSync/Organized_Results/Eye/Subject_" + str(subjectID) + "/eye.csv"
     f = open(_path)
     lines = f.readlines()
     f.close()

@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-correct_subjects = [1,2,4,5,6,7,8,9,10]
 
 
 try:
