@@ -1,0 +1,17 @@
+#Starting log sesion 05:28:26:311
+%Timestamp;eventsData
+05:28:26:311;Experiment Started;
+05:28:28:706;38;typeI2;bearSprite;4;1;
+05:28:28:706;StartingTrial;runTrial_I2
+05:28:33:389;SetupFinished;
+05:28:33:389;occluderUp;
+05:28:34:406;GrabbingStart_typeI2
+05:28:34:406;movingContainer;
+05:28:35:906;objGrabbed;1;stim_right;
+05:28:36:923;RightGrabbed;
+05:28:39:355;GrabbingEnd_typeI2
+05:28:39:355;InferenceStarting_I2
+05:28:39:356;Repositioning
+05:28:41:856;InferenceEnding_I2
+05:28:41:856;InterruptionQuestion
+closing session;19113

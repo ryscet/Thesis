@@ -1,0 +1,6 @@
+#Starting log sesion 05:01:00:363
+%Timestamp;eventsData
+05:01:00:367;Experiment Started;
+05:01:11:119;1;typeD;startStimuli;2;1;
+05:01:11:119;StartingTrial;runTrial_D
+closing session;11335

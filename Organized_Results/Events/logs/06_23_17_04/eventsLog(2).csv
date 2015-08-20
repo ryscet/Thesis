@@ -1,0 +1,34 @@
+#Starting log sesion 05:04:17:481
+%Timestamp;eventsData
+05:04:17:484;Experiment Started;
+05:04:17:707;1;typeI4;snake;0;1;
+05:04:17:707;StartingTrial;runTrial_I4
+closing session;327
+#Starting log sesion 05:04:18:959
+%Timestamp;eventsData
+05:04:18:963;Experiment Started;
+05:04:19:291;1;typeA;boy;2;0;
+05:04:19:291;StartingTrial;runTrial_A
+closing session;4953
+#Starting log sesion 05:04:25:659
+%Timestamp;eventsData
+05:04:25:662;Experiment Started;
+05:04:26:738;1;typeC;bearSprite;4;1;
+05:04:26:739;StartingTrial;runTrial_C
+05:04:31:414;SetupFinished;
+05:04:31:414;occluderUp;
+05:04:33:429;GrabbingStart_typeC
+05:04:33:429;movingContainer;
+closing session;9180
+#Starting log sesion 05:04:36:510
+%Timestamp;eventsData
+05:04:36:513;Experiment Started;
+05:04:37:666;1;typeD;startStimuli;2;0;
+05:04:37:666;StartingTrial;runTrial_D
+closing session;3735
+#Starting log sesion 05:04:41:884
+%Timestamp;eventsData
+05:04:41:887;Experiment Started;
+05:04:45:888;1;typeC;bearSprite;4;1;
+05:04:45:888;StartingTrial;runTrial_C
+closing session;7968
