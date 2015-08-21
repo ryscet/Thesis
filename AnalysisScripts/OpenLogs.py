@@ -12,6 +12,7 @@ import time
 import os
 import subprocess
 
+trialsToTake = 71
 correct_subjects = [1,2,3,4,5,6,7,8,9,10]
 def combineSubjects():
     allEvents = []
@@ -24,6 +25,7 @@ def combineSubjects():
 
 
 def openLogs(subjectID, originalTime):
+    global trialsToTake
     pd.options.mode.chained_assignment = None
     #_path = "/Users/ryszardcetnarski/Desktop/MasterForSync/Organized_Results/Events/Subject_" + str(subjectID) + "/events.csv"
     _path = "/Users/user/Desktop/Thesis/Organized_Results/Events/Subject_" + str(subjectID) + "/events.csv"
@@ -41,15 +43,13 @@ def openLogs(subjectID, originalTime):
     endIdx = []
     for idx, line in enumerate(lines):
 #Only look for 72 trials (that is the max amount of trials), the 73rd begun to save when experiment was ending thus eslting in error ('StartingTrial' without 'Question')
-        if len(startIdx) < 71: 
+        if len(startIdx) < trialsToTake: 
             if 'StartingTrial' in line: 
                 startIdx.append(idx -1)
-        if len(endIdx) < 71:
+        if len(endIdx) < trialsToTake:
             if 'Question' in line:
                 endIdx.append(idx+2)
                 
-    print(len(startIdx))
-    print(len(endIdx))
     limits = np.vstack((startIdx, endIdx)).T
     doneLogs = pd.DataFrame(columns = ['type','possible','stim','startInference','endInference', 'startNoference','endNoference','sortAnswer'])
 

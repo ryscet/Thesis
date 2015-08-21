@@ -33,30 +33,7 @@ def plotEye(eye):
     ax.plot(eye.left_x, eye.left_y)
     
     
-def FindSlices(eye, events, _ference):
-        
-    eye = eye[eye['left_x'] != -10000 ]
-    my_slices = []
-    fig = plt.figure()
-    fig.suptitle('Gaze during'+ _ference)
-    ax = fig.add_subplot(111)
 
-    events = events[~events['start'+ _ference].isnull()]
-    for index, row in events.iterrows():
-        
-        start = eye.index.searchsorted(row['start' + _ference])
-        end = eye.index.searchsorted(row['end' + _ference])
-                  
-        my_slices.append(eye.ix[start:end])
-
-        ax.plot(my_slices[-1]['left_x'],my_slices[-1]['left_y'] )
-    ax.set_xlabel('Gaze X')
-    ax.set_ylabel('Gaze Y')
-        
-    ax.set_ylim(400, 1600)
-    ax.set_xlim(0, 2000)
-    return my_slices
-            
 def accuracyPlot():
     allMeans = np.zeros((len(correct_subjects),2))
     for i in range(len(correct_subjects)):
@@ -79,9 +56,11 @@ def accuracyPlot():
     #print(sort_events['accuracy'].mean())
    # print(cup_events['_sortAnswer'].mean())
     
+
+
+    
 def heatMap(idx, _ference):
     nbins = 100
-
     plt.style.use('ggplot')
     slices = FindSlices(EyeData[idx], Events[idx], _ference)
     slices = pd.concat(slices)
@@ -108,16 +87,27 @@ def CompareHmaps():
     inf_allSubjects = np.zeros((nbins, nbins))
     no_allSubjects = np.zeros((nbins, nbins))
     for i in range(len(correct_subjects)):
-        inf_allSubjects  = inf_allSubjects  + heatMap(i, 'Inference')
-        no_allSubjects = no_allSubjects + heatMap(i, 'Noference')
+        currInfHmap = heatMap(i, 'Inference')
+        currNoHmap = heatMap(i, 'Noference')
+        inf_allSubjects  = inf_allSubjects + currInfHmap 
+        no_allSubjects = no_allSubjects + currNoHmap
+        PlotHmap(currInfHmap ,currNoHmap, 'Subject hmap: ' + str(i))    
+
         
     inf_mean = inf_allSubjects/len(correct_subjects)
     no_mean = no_allSubjects/len(correct_subjects)
     
+    PlotHmap(inf_mean, no_mean, 'All subjects comparison')    
+    
+    
+
+        
+    return inf_allSubjects, no_allSubjects
+def PlotHmap(inf_mean, no_mean, _subtitle):
     plt.style.use('ggplot')
     
     fig = plt.figure()
-    fig.suptitle('Gaze heat map comparison')
+    fig.suptitle(_subtitle)
     inf = fig.add_subplot(121)    
     no = fig.add_subplot(122)   
     inf.imshow(inf_mean.T)
@@ -126,8 +116,7 @@ def CompareHmaps():
     inf.set_xlabel('inference')
     inf.set_ylabel('screen coordinates')
     no.set_xlabel('no inference')
-        
-    #return inf_allSubjects, no_allSubjects
+    
 
             
     
