@@ -9,19 +9,17 @@ import OpenLogs as op
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-
+import timeit
 from datetime import datetime
 
 
 try:
     EyeData
 except NameError:
-    startTime = datetime.now()
     print ("Results not loaded. Loading results")
     allResults = op.combineSubjects()
     Events = allResults[0]
     EyeData = allResults[1]
-    print( datetime.now() - startTime)
     correct_subjects = [i for i in range (1, len(Events) + 1)]
 
 def plotEye(eye):
@@ -62,6 +60,8 @@ def accuracyPlot():
 def heatMap(idx, _ference):
     nbins = 100
     plt.style.use('ggplot')
+    #trialTypes = ['typeA', 'typeB']
+
     slices = FindSlices(EyeData[idx], Events[idx], _ference)
     slices = pd.concat(slices)
   
@@ -86,6 +86,7 @@ def CompareHmaps():
     nbins = 100
     inf_allSubjects = np.zeros((nbins, nbins))
     no_allSubjects = np.zeros((nbins, nbins))
+
     for i in range(len(correct_subjects)):
         currInfHmap = heatMap(i, 'Inference')
         currNoHmap = heatMap(i, 'Noference')
